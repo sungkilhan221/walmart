@@ -20,6 +20,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import AddToCart from "@/components/AddToCart";
+import { priceFormat } from "@/lib/priceFormat";
 
 type Props = {
   searchParams: {
@@ -33,7 +34,7 @@ async function ProductPage({ searchParams: { url } }: Props) {
   if (!product) return notFound();
 
   return (
-    <div className="p-4 lg:p-10 flex flex-col lg:flex-row w-full">
+    <div className="p-4 lg:p-10 flex flex-col lg:flex-row w-full justify-center">
       <div className="hidden lg:inline space-y-4">
         {product?.images.map((image, i) => (
           <Image
@@ -60,8 +61,8 @@ async function ProductPage({ searchParams: { url } }: Props) {
                     key={image}
                     src={image}
                     alt={product.title + " " + i}
-                    width={400}
-                    height={400}
+                    width={600}
+                    height={600}
                   />
                 </div>
               </div>
@@ -72,7 +73,7 @@ async function ProductPage({ searchParams: { url } }: Props) {
         <CarouselNext />
       </Carousel>
 
-      <div className="flex-1 border rounded-md w-full p-5 space-y-5">
+      <div className="flex-1 border rounded-md w-full p-5 space-y-5 max-w-3xl">
         <h1 className="text-3xl font-bold">{product.title}</h1>
 
         <div className="space-x-2">
@@ -100,14 +101,13 @@ async function ProductPage({ searchParams: { url } }: Props) {
             </p>
           )}
 
-          <p className="text-2xl font-bold mt-2">
-            {/* {product?.currency}  */}${product?.price}
+          <p className="text-4xl font-bold mt-2 mb-4">
+            {priceFormat(product?.price)}
           </p>
 
-          {/* Add to Cart Button */}
           <AddToCart product={product} />
 
-          <hr />
+          <hr className="mt-10" />
 
           <h3 className="font-bold text-xl pt-10">Specifications</h3>
 

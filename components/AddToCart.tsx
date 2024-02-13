@@ -34,7 +34,10 @@ function AddToCart({ product }: { product: Product }) {
   }
 
   return (
-    <Button className="bg-walmart hover:bg-walmart/50" onClick={handleAdd}>
+    <Button
+      className="bg-walmart hover:bg-walmart/50 rounded-full w-[200px]"
+      onClick={handleAdd}
+    >
       Add to Cart
     </Button>
   );
